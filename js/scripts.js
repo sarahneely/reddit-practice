@@ -16,10 +16,12 @@ function getReq(url, callback){
 
 function processAjax(object){
 	const postList = getPostInfo(object);
+	loadData();
 }
 
 function getPostInfo(postObject) {
-	postObject.data.children.forEach(function postData() {
+	// We will explain the 'postData => {' syntax on Tuesday
+	postObject.data.children.forEach(postData => {
 		const post = { title: '', url: '' };
 
 		postData = postData.data;
@@ -30,3 +32,13 @@ function getPostInfo(postObject) {
 
 	return newPosts;
 }
+
+function loadData() {
+	newPosts.forEach(post => {
+		// Manipulate the data here!
+     let pos = newPosts.indexOf(post) + 1;
+     document.getElementById('post' + pos).innerHTML = post.title + " " +post.url;
+	})
+}
+
+ console.log(newPosts);
